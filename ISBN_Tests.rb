@@ -14,9 +14,20 @@ class TestISBNNumber < Minitest::Test
 		assert_equal("9780470059029", isbn_remove_hyphens_and_spaces("978-047-00 5-9029"))
 	end
 
-	def test_isbn_is_valid
-		isbn_number = isbn_valid?("978-047-00 5-9029")
-		assert_equal(true, isbn_number)
+	def test_isbn_is_valid_or_invalid
+		assert_equal(true, isbn_valid?("978-047-00 5-9029"))
+		assert_equal(false, isbn_valid?("978  047-0-0"))
+	end
+
+	def test_for_invalid_characters
+		isbn_number = invalid_characters("123456789025t")
+		assert_equal(false, isbn_number)
+	end
+
+	def test_last_element_is_x
+		isbn_number = isbn_remove_hyphens_and_spaces("978-047-00 5-X")
+		isbn_number_2 = isbn_last_element_is_x(isbn_number)
+		assert_equal("10", isbn_number_2[9])
 	end
 
 end

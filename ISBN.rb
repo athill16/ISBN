@@ -22,7 +22,23 @@ def isbn_remove_hyphens_and_spaces(number)
 
 end
 
+def invalid_characters(number)
+	if number =~ /\D/
+		false
+	else
+		true
+	end
+end
 
+def isbn_last_element_is_x(number)
+
+	number = number.split("")
+	if number[9] == "X" || number[9] == "x"
+		number[9] = "10"
+	end
+	number
+
+end
 
 
 
