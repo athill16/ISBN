@@ -1,10 +1,18 @@
 def isbn_valid?(number)
 
+	number = isbn_remove_hyphens_and_spaces(number)
 	isbn_length(number)
-	isbn_remove_hyphens_and_spaces(number)
 	invalid_characters(number)
-	isbn_last_element_is_x(number)
+	check_digit_isbn_10(number)
+	check_digit_isbn_13(number)
 
+	if number.length == 10 && isbn_length(number) == true && check_digit_isbn_10(number) == true
+		true
+	elsif number.length == 13 && isbn_length(number) == true && check_digit_isbn_13(number) == true
+		true
+	else
+		false
+	end
 end
 
 def isbn_length(number)
