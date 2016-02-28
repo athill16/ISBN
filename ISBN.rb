@@ -59,6 +59,18 @@ def check_digit_isbn_10(number)
 	end
 end
 
+def check_digit_isbn_13(number)
+	sum = number[0].to_i + 3 * number[1].to_i + number[2].to_i + 3 * number[3].to_i + number[4].to_i + 3 * number[5].to_i + number[6].to_i + 3 * number[7].to_i + number[8].to_i + 3 * number[9].to_i + number[10].to_i + 3 * number[11].to_i
+	checksum = sum % 10
+	checksum1 = 10 - checksum
+	checksum2 = checksum1 % 10
+	if number[12].to_i == checksum2
+		true
+	else
+		false
+	end
+end
+
 
 
 
