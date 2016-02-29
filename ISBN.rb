@@ -56,8 +56,15 @@ def isbn_last_element_is_x(number)
 end
 
 def check_digit_isbn_10(number)
-	sum = number[0].to_i + number[1].to_i * 2 + number[2].to_i * 3 + number[3].to_i * 4 + number[4].to_i * 5 + number[5].to_i * 6 + number[6].to_i * 7 + number[7].to_i * 8 + number[8].to_i * 9
-	checksum = sum % 11
+	array = []
+	x = 1
+	9.times do
+		num = x * number[x-1].to_i
+		x = x + 1
+		array.push(num)
+	end
+	sum_1 = array.inject(0){|sum,x| sum + x }
+	checksum = sum_1 % 11
 	if checksum == 10 && number[9] == "X" || number[9] == "x"
 		true
 	elsif number[9].to_i == checksum
@@ -68,8 +75,16 @@ def check_digit_isbn_10(number)
 end
 
 def check_digit_isbn_13(number)
-	sum = number[0].to_i + 3 * number[1].to_i + number[2].to_i + 3 * number[3].to_i + number[4].to_i + 3 * number[5].to_i + number[6].to_i + 3 * number[7].to_i + number[8].to_i + 3 * number[9].to_i + number[10].to_i + 3 * number[11].to_i
-	checksum = sum % 10
+	array = [1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 1, 3]
+	x = 0
+	array_1 = []
+	12.times do
+		sum = number[x].to_i * array[x]
+		x = x + 1
+		array_1.push(sum)
+	end
+	sum_1 = array_1.inject(0){|sum,x| sum + x }
+	checksum = sum_1 % 10
 	checksum1 = 10 - checksum
 	checksum2 = checksum1 % 10
 	if number[12].to_i == checksum2
@@ -78,7 +93,6 @@ def check_digit_isbn_13(number)
 		false
 	end
 end
-
 
 
 
