@@ -45,16 +45,6 @@ def invalid_characters(number)
 	end
 end
 
-def isbn_last_element_is_x(number)
-
-	number = number.split("")
-	if number[9] == "X" || number[9] == "x"
-		number[9] = "10"
-	end
-	number
-
-end
-
 def check_digit_isbn_10(number)
 	array = []
 	x = 1

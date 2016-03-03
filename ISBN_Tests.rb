@@ -20,8 +20,7 @@ class TestISBNNumber < Minitest::Test
 
 	def test_last_element_is_x
 		isbn_number = isbn_remove_hyphens_and_spaces("978-047-00 5-X")
-		isbn_number_2 = isbn_last_element_is_x(isbn_number)
-		assert_equal("10", isbn_number_2[9])
+		assert_equal("X", isbn_number[9])
 	end
 
 	def test_isbn_10_check_digit_is_1
