@@ -14,7 +14,7 @@ class TestISBNNumber < Minitest::Test
 	end
 
 	def test_for_invalid_characters
-		isbn_number = invalid_characters("123456789025t")
+		isbn_number = invalid_characters("123456789025x")
 		assert_equal(false, isbn_number)
 	end
 
@@ -37,6 +37,10 @@ class TestISBNNumber < Minitest::Test
 
 	def test_isbn_is_valid2
 		assert_equal(true, isbn_valid?("9780470059029"))
+	end
+
+	def test_isbn_is_valid3
+		assert_equal(true, isbn_valid?("978-0136102656"))
 	end
 
 end

@@ -38,6 +38,7 @@ def isbn_remove_hyphens_and_spaces(number)
 end
 
 def invalid_characters(number)
+	# Checks if all elements in ISBN are numbers and not letters/characters.
 	if number =~ /\D/
 		false
 	else
@@ -47,17 +48,24 @@ end
 
 def check_digit_isbn_10(number)
 	array = []
-	x = 1
-	9.times do
-		num = x * number[x-1].to_i
-		x = x + 1
-		array.push(num)
+	number = number.split("")
+	number.each do |value|
+		array << value.to_i
 	end
-	sum_1 = array.inject(0){|sum,x| sum + x }
-	checksum = sum_1 % 11
-	if checksum == 10 && number[9] == "X" || number[9] == "x"
+
+	sum = 0
+
+	array.each_with_index do |value, index|
+		# Multiplies each value by its index plus one. So the first number multiples by 1 instead of 0.
+		break if index == 9
+		sum += value * (index + 1)
+	end
+
+	check_digit = sum % 11
+
+	if check_digit == 10 && number[9] == "X" || number[9] == "x"
 		true
-	elsif number[9].to_i == checksum
+	elsif number[9].to_i == check_digit
 		true
 	else 
 		false
@@ -65,19 +73,28 @@ def check_digit_isbn_10(number)
 end
 
 def check_digit_isbn_13(number)
-	array = [1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 1, 3]
-	x = 0
-	array_1 = []
-	12.times do
-		sum = number[x].to_i * array[x]
-		x = x + 1
-		array_1.push(sum)
+	array = []
+	number = number.split("")
+	number.each do |value|
+		array << value.to_i
 	end
-	sum_1 = array_1.inject(0){|sum,x| sum + x }
-	checksum = sum_1 % 10
-	checksum1 = 10 - checksum
-	checksum2 = checksum1 % 10
-	if number[12].to_i == checksum2
+
+	sum = 0
+
+	array.each_with_index do |value, index|
+		# Multiples 1 by numbers with even indexes and multiplies 3 by numbers with odd indexes.
+		break if index == 12
+		if index % 2 == 0
+			sum += value
+		else 
+			sum += value * 3
+		end
+	end
+	sum = sum % 10
+	sum = 10 - sum
+	check_digit = sum % 10
+
+	if number[12].to_i == check_digit
 		true
 	else
 		false
