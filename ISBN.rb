@@ -94,11 +94,8 @@ def check_digit_isbn_13(number)
 	sum = 10 - sum
 	check_digit = sum % 10
 
-	if number[12].to_i == check_digit
-		true
-	else
-		false
-	end
+	number[12].to_i == check_digit
+
 end
 
 
