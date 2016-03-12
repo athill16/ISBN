@@ -1,16 +1,32 @@
 def valid_isbn?(number)
 	isbn_without_invalid_characters = remove_invalid_characters(number)
+
+	if isbn_without_invalid_characters.length == 10
+		valid_isbn10?(isbn_without_invalid_characters)
+	elsif isbn_without_invalid_characters.length == 13 
+		valid_isbn13?(isbn_without_invalid_characters)
+	else
+		false
+	end
+end
+
+def valid_isbn10?(isbn_without_invalid_characters)
 	isbn_without_x = remove_x_from_isbn_if_it_is_last_element(isbn_without_invalid_characters)
 	isbn_contain_all_digits = contain_all_digits?(isbn_without_x)
-	isbn_without_invalid_characters = add_x_back_into_isbn(isbn_without_invalid_characters)
-	isbn10_sum = sum_of_isbn10_digits(isbn_without_invalid_characters)
+	isbn_without_invalid_characters = add_x_back_into_isbn(isbn_without_invalid_characters)		isbn10_sum = sum_of_isbn10_digits(isbn_without_invalid_characters)
 	isbn10_check = isbn10_check_digit_equal_sum?(isbn_without_invalid_characters)
-	isbn13_sum = sum_of_isbn13_digits(isbn_without_invalid_characters)
-	isbn13_check = isbn13_check_digit_equal_sum?(isbn_without_invalid_characters)
-
-	if isbn_without_invalid_characters.length == 10 && isbn_contain_all_digits == true && isbn10_check == true
+	if isbn_contain_all_digits == true && isbn10_check == true
 		true
-	elsif isbn_without_invalid_characters.length == 13 && isbn_contain_all_digits == true && isbn13_check == true
+	else
+		false
+	end
+end
+
+def valid_isbn13?(isbn_without_invalid_characters)
+	isbn_contain_all_digits = contain_all_digits?(isbn_without_invalid_characters)
+	isbn13_sum = sum_of_isbn13_digits(isbn_without_invalid_characters)
+ 	isbn13_check = isbn13_check_digit_equal_sum?(isbn_without_invalid_characters)
+	if isbn_contain_all_digits == true && isbn13_check == true
 		true
 	else
 		false
@@ -21,15 +37,6 @@ def remove_invalid_characters(number)
 	number.delete!(" ")
 	number.delete!("-")
 	number
-end
-
-def contains_10_or_13_characters?(number)
-	remove_invalid_characters(number)
-	if number.length == 10 || number.length == 13
-		true
-	else 
-		false
-	end
 end
 
 def remove_x_from_isbn_if_it_is_last_element(number)

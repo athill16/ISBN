@@ -3,9 +3,9 @@ require_relative "ISBN_redo.rb"
 
 class TestISBN < Minitest::Test
 
-	def test_ISBN_has_10_or_13_numbers
-		assert_equal(true, contains_10_or_13_characters?("1232455369"))
-		assert_equal(true, contains_10_or_13_characters?("4692874753241"))
+	def test_ISBN_that_is_not_10_or_13_digits_is_false
+		assert_equal(false, valid_isbn?("1255369"))
+		assert_equal(false, valid_isbn?("46928734753241"))
 	end
 
 	def test_ISBN_with_spaces_and_hyphens_returns_valid_format
