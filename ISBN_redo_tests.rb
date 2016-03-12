@@ -29,4 +29,8 @@ class TestISBN < Minitest::Test
 		assert_equal(true, isbn13_check_digit("469287475 324 1"))
 	end
 
+	def test_ISBN10_with_X_in_middle_and_end_is_invalid
+		assert_equal(false, valid_isbn?("8771X5869X"))
+	end
+
 end
