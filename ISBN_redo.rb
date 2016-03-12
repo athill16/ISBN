@@ -78,7 +78,7 @@ def sum_of_isbn13_digits(number)
 	array = number.split("")
 	sum = 0
 	array.each_with_index do |value, position|
-# Multiples 1 by numbers with even indexes and multiplies 3 by numbers with odd indexes.
+# Multiplies 1 by numbers with even indexes and multiplies 3 by numbers with odd indexes.
 		break if position == 12
 		if position % 2 == 0
 			sum += value.to_i
