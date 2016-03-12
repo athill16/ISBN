@@ -26,15 +26,9 @@ def isbn_length(number)
 end
 
 def isbn_remove_hyphens_and_spaces(number)
-
-	invalid_characters = ["-", " "]
-	invalid_characters.each do |character|
-		if number.include?(character)
-			number.delete!(character)
-		end
-	end
+	number.delete!(" ")
+	number.delete!("-")
 	number
-
 end
 
 def invalid_characters(number)
