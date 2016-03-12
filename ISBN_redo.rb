@@ -13,24 +13,17 @@ end
 def valid_isbn10?(isbn_without_invalid_characters)
 	isbn_without_x = remove_x_from_isbn_if_it_is_last_element(isbn_without_invalid_characters)
 	isbn_contain_all_digits = contain_all_digits?(isbn_without_x)
-	isbn_without_invalid_characters = add_x_back_into_isbn(isbn_without_invalid_characters)		isbn10_sum = sum_of_isbn10_digits(isbn_without_invalid_characters)
+	isbn_without_invalid_characters = add_x_back_into_isbn(isbn_without_invalid_characters)		
+	isbn10_sum = sum_of_isbn10_digits(isbn_without_invalid_characters)
 	isbn10_check = isbn10_check_digit_equal_sum?(isbn_without_invalid_characters)
-	if isbn_contain_all_digits == true && isbn10_check == true
-		true
-	else
-		false
-	end
+	isbn_contain_all_digits == true && isbn10_check == true
 end
 
 def valid_isbn13?(isbn_without_invalid_characters)
 	isbn_contain_all_digits = contain_all_digits?(isbn_without_invalid_characters)
 	isbn13_sum = sum_of_isbn13_digits(isbn_without_invalid_characters)
  	isbn13_check = isbn13_check_digit_equal_sum?(isbn_without_invalid_characters)
-	if isbn_contain_all_digits == true && isbn13_check == true
-		true
-	else
-		false
-	end
+	isbn_contain_all_digits == true && isbn13_check == true
 end
 
 def remove_invalid_characters(number)
