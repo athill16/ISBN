@@ -26,11 +26,19 @@ class TestISBN < Minitest::Test
 	end
 
 	def test_isbn10_is_valid
-		assert_equal(true, valid_isbn?("0471958697"))
+		assert_equal(true, valid_isbn?("877 1958-69x"))
 	end
 
 	def test_isbn13_is_valid
-		assert_equal(true, valid_isbn?("9780471486480"))
+		assert_equal(true, valid_isbn?("97804-714864 80"))
+	end
+
+	def test_isbn10_with_invalid_characters_is_invalid
+		assert_equal(false, valid_isbn?("047s958697"))
+	end
+
+	def test_isbn13_with_invalid_characters_is_invalid
+		assert_equal(false, valid_isbn?("97'0471486480"))
 	end
 
 end

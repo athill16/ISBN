@@ -2,6 +2,7 @@ def valid_isbn?(number)
 	isbn_without_invalid_characters = remove_invalid_characters(number)
 	isbn_without_x = remove_x_from_isbn_if_it_is_last_element(isbn_without_invalid_characters)
 	isbn_contain_all_digits = contain_all_digits?(isbn_without_x)
+	isbn_without_invalid_characters = add_x_back_into_isbn(isbn_without_invalid_characters)
 	isbn10_sum = sum_of_isbn10_digits(isbn_without_invalid_characters)
 	isbn10_check = isbn10_check_digit_equal_sum?(isbn_without_invalid_characters)
 	isbn13_sum = sum_of_isbn13_digits(isbn_without_invalid_characters)
@@ -40,6 +41,14 @@ def remove_x_from_isbn_if_it_is_last_element(number)
 	else
 		number
 	end
+end
+
+def add_x_back_into_isbn(number)
+	number = number.split("")
+	if number.length == 9
+		number.push("X")
+	end
+	number = number.join
 end
 
 def contain_all_digits?(number)
