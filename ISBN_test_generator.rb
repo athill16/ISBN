@@ -15,7 +15,7 @@ class TestISBNGenerator < Minitest::Test
 	def test_random_isbn10_is_displayed
 		assert_equal("1234", display_random_isbn10([1, 2, 3, 4]))
 	end
-	
+
 end
 
 

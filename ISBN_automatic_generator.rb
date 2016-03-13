@@ -1,8 +1,8 @@
 def generate_valid_isbn10()
 	array = generate_array_for_isbn10()
-	isbn_array = calculate_check_digit_for_isbn10(array)
-	display_random_isbn10(isbn_array)
-
+	isbn_array = push_check_digit_to_isbn10_array(array)
+	isbn10 = display_random_isbn10(isbn_array)
+	puts isbn10
 end
 
 def generate_array_for_isbn10()
@@ -21,6 +21,9 @@ def push_check_digit_to_isbn10_array(array)
 		sum += number * (position + 1)
 	end
 	sum = sum % 11
+		if sum == 10
+			sum = "X"
+		end
 	array.push(sum)
 	array
 end
@@ -29,7 +32,7 @@ def display_random_isbn10(array)
 	array = array.join
 end
 
-
+generate_valid_isbn10()
 
 
 
