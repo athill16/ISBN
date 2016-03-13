@@ -8,13 +8,13 @@ def generate_array_for_isbn10()
 	isbn_array
 end
 
-# def add_check_digit_to_isbn10(array)
-# 	sum = 0
-# 	array.each_with_index do |number, position|
-# 		if position % 2 == 0
-# 			sum += number
-# 		else 
-# 			sum += number * 3	
+def calculate_check_digit_for_isbn10(array)
+	sum = 0
+	array.each_with_index do |number, position|
+		sum += number * (position + 1)
+	end
+	sum
+end
 
 
 
