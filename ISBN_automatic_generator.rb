@@ -1,7 +1,7 @@
 def generate_valid_isbn10()
 	array = generate_array_for_isbn10()
-	sum = calculate_check_digit_for_isbn10(array)
-
+	isbn_array = calculate_check_digit_for_isbn10(array)
+	display_random_isbn10(isbn_array)
 
 end
 
@@ -15,7 +15,7 @@ def generate_array_for_isbn10()
 	isbn_array
 end
 
-def calculate_check_digit_for_isbn10(array)
+def push_check_digit_to_isbn10_array(array)
 	sum = 0
 	array.each_with_index do |number, position|
 		sum += number * (position + 1)
@@ -25,6 +25,9 @@ def calculate_check_digit_for_isbn10(array)
 	array
 end
 
+def display_random_isbn10(array)
+	array = array.join
+end
 
 
 
