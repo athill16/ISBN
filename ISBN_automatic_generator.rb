@@ -7,4 +7,16 @@ def generate_array_for_isbn10()
 	end
 	isbn_array
 end
-generate_array_for_isbn10()
+
+# def add_check_digit_to_isbn10(array)
+# 	sum = 0
+# 	array.each_with_index do |number, position|
+# 		if position % 2 == 0
+# 			sum += number
+# 		else 
+# 			sum += number * 3	
+
+
+
+
+
