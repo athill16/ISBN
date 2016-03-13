@@ -8,10 +8,10 @@ class TestISBNGenerator < Minitest::Test
 		assert_equal(9, array.count)
 	end
 
-	def test_check_digit
-		assert_equal(17, calculate_check_digit_for_isbn10([1, 2, 4]))
+	def test_isbn10_array_contains_check_digit_at_end
+		assert_equal([1, 2, 3, 3], calculate_check_digit_for_isbn10([1, 2, 3]))
 	end
-	
+
 end
 
 
