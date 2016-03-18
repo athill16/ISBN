@@ -1,8 +1,12 @@
 def generate_valid_isbn10()
-	array = generate_array_for_isbn10()
-	isbn_array = push_check_digit_to_isbn10_array(array)
-	isbn10 = display_random_isbn10(isbn_array)
+	array10 = generate_array_for_isbn10()
+	isbn10_array = push_check_digit_to_isbn10_array(array10)
+	isbn10 = display_random_isbn(isbn10_array)
 	puts isbn10
+	array13 = generate_array_for_isbn13()
+	isbn13_array = push_check_digit_to_isbn13_array(array13)
+	isbn13 = display_random_isbn(isbn13_array)
+	puts isbn13
 end
 
 def generate_array_for_isbn10()
@@ -25,6 +29,19 @@ def generate_array_for_isbn13()
 	isbn_array
 end
 
+def push_check_digit_to_isbn10_array(array)
+	sum = 0
+	array.each_with_index do |number, position|
+		sum += number * (position + 1)
+	end
+	sum = sum % 11
+		if sum == 10
+			sum = "X"
+		end
+	array.push(sum)
+	array
+end
+
 def push_check_digit_to_isbn13_array(array)
 	sum = 0
 	array.each_with_index do |number, position|
@@ -41,20 +58,7 @@ def push_check_digit_to_isbn13_array(array)
 	array
 end
 
-def push_check_digit_to_isbn10_array(array)
-	sum = 0
-	array.each_with_index do |number, position|
-		sum += number * (position + 1)
-	end
-	sum = sum % 11
-		if sum == 10
-			sum = "X"
-		end
-	array.push(sum)
-	array
-end
-
-def display_random_isbn10(array)
+def display_random_isbn(array)
 	array = array.join
 end
 
