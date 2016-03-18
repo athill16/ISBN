@@ -16,6 +16,11 @@ class TestISBNGenerator < Minitest::Test
 		assert_equal("1234", display_random_isbn10([1, 2, 3, 4]))
 	end
 
+	def test_array_generates_12_numbers_for_isbn_13
+		array = generate_array_for_isbn13()
+		assert_equal(12, array.count)
+	end
+
 end
 
 
