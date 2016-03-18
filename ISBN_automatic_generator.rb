@@ -25,6 +25,22 @@ def generate_array_for_isbn13()
 	isbn_array
 end
 
+def push_check_digit_to_isbn13_array(array)
+	sum = 0
+	array.each_with_index do |number, position|
+		if position % 2 == 0
+			sum += number
+		else 
+			sum += number * 3
+		end
+	end
+	sum = sum % 10
+	sum = 10 - sum
+	sum = sum % 10
+	array.push(sum)
+	array
+end
+
 def push_check_digit_to_isbn10_array(array)
 	sum = 0
 	array.each_with_index do |number, position|

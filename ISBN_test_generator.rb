@@ -21,6 +21,10 @@ class TestISBNGenerator < Minitest::Test
 		assert_equal(12, array.count)
 	end
 
+	def test_isbn13_array_contains_check_digit_at_end
+		assert_equal([9, 7, 8, 0, 4, 7, 1, 4, 8, 6, 4, 8, 0], push_check_digit_to_isbn13_array([9, 7, 8, 0, 4, 7, 1, 4, 8, 6, 4, 8]))
+	end
+
 end
 
 
