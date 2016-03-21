@@ -14,14 +14,12 @@ def generate_valid_isbn10()
 	array10 = generate_array_for_isbn10()
 	isbn10_array = push_check_digit_to_isbn10_array(array10)
 	isbn10 = display_random_isbn(isbn10_array)
-	puts isbn10
 end
 
 def generate_valid_isbn13()
 	array13 = generate_array_for_isbn13()
 	isbn13_array = push_check_digit_to_isbn13_array(array13)
 	isbn13 = display_random_isbn(isbn13_array)
-	puts isbn13
 end
 
 def generate_array_for_isbn10()
@@ -77,7 +75,16 @@ def display_random_isbn(array)
 	array = array.join
 end
 
-ask_if_isbn10_or_isbn13_is_wanted
+f = File.open('list_of_five_random_ISBNs.csv', 'w')
+
+5.times do
+	isbn = ask_if_isbn10_or_isbn13_is_wanted
+	f << "#{isbn}\n"
+end
+
+f.close
+
+
 
 
 
